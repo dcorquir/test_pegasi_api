@@ -20,4 +20,5 @@ const ScheduleSchema = new Schema<Schedule>({
     fechaFinal: { type: Number }
 });
 
-module.exports = mongoose.model("ScheduleSchema", ScheduleSchema);
+
+module.exports = mongoose.model<Schedule>("ScheduleSchema", ScheduleSchema);

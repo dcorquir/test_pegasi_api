@@ -7,7 +7,7 @@ export interface Patient {
     fechaNacimiento: string;
     fechaFachecimiento: string;
     cidudadNacimiento: string;
-    fallecido: string;
+    fallecido: boolean;
     direccion: string;
     email: string;
     casado?: boolean;
@@ -39,11 +39,11 @@ export class PatientCreateAPI implements Pick<Patient, 'nombre' | 'dni' | 'fecha
     })
     cidudadNacimiento!: string;
     
-    @IsString()
+    @IsBoolean()
     @IsNotEmpty({
         message: 'El campo fallecido es requerido',
     })
-    fallecido!: string;
+    fallecido!: boolean;
     
     @IsString()
     @IsNotEmpty({
