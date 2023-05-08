@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import config from './../../config/config';
 
 class MongoDB {
   constructor() {
@@ -9,7 +7,7 @@ class MongoDB {
   }
 
   private connect(): void {
-    const mongoUri: string = process.env.MONGODB_URI as string;
+    const mongoUri: string = config.MONGODB_URI as string;
     mongoose
       .connect(mongoUri)
       .then(() => {

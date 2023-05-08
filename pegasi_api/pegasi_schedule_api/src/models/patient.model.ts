@@ -1,4 +1,4 @@
-import { IsString, IsDateString, IsNotEmpty } from 'class-validator';
+import { IsString, IsDateString, IsNotEmpty, IsBoolean } from 'class-validator';
 
 export interface Patient {
     _id?: string;
@@ -10,7 +10,7 @@ export interface Patient {
     fallecido: string;
     direccion: string;
     email: string;
-    casado: string;
+    casado: boolean;
 }
 
 // Validation model which comes to the API.
@@ -57,9 +57,9 @@ export class PatientCreateAPI implements Pick<Patient, 'nombre' | 'dni' | 'fecha
     })
     email!: string;
 
-    @IsString()
+    @IsBoolean()
     @IsNotEmpty({
         message: 'El campo casado es requerido',
     })
-    casado!: string;
+    casado!: boolean;
 }
