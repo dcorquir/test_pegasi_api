@@ -9,7 +9,7 @@ const config = {
         st: {
             ST_BASE_URL: process.env.ST_BASE_URL
         },
-        HBV: {
+        hbv: {
             HBV_BASE_URL: process.env.HBV_BASE_URL
         }
     }

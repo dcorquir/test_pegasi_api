@@ -16,8 +16,8 @@ export class StService {
             };
             const result = await executeRequest(options);
 
-            if (result.data && result.data.length > 0) {
-                return StMapper.mapperPatientData(result.data[0]);
+            if (result.data && result.data.data.length > 0) {
+                return StMapper.mapperPatientData(result.data.data[0]);
             }
 
             return null;

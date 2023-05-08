@@ -9,12 +9,17 @@ routes.get('/', (req: Request, res: Response) => {
     return res.json({ message: 'Hello World' });
 });
 
-routes.post('/', RequestValidator.validate(ScheduleCreateAPI), (req: Request, res: Response) => {
+routes.post('/', RequestValidator.validate(ScheduleCreateAPI), async (req: Request, res: Response) => {
     console.log(req.body);
     const externalResource = req.body.externalResource;
+    let dataInsert = req.body;
+    console.log('externalResource', externalResource);
     if (externalResource && externalResource != '') {
-        let newData = ExternalResourceController.getExternalResourceController(externalResource, req.body);
+        dataInsert = await ExternalResourceController.getExternalResourceController(externalResource, req.body);
     }
+
+    console.log('dataInsert', dataInsert);
+
     res.status(200).send({
         message: "La agenda se ha creado correctamente",
     });

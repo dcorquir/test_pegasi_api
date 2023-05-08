@@ -10,7 +10,7 @@ export interface Patient {
     fallecido: string;
     direccion: string;
     email: string;
-    casado: boolean;
+    casado?: boolean;
 }
 
 // Validation model which comes to the API.
