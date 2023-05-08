@@ -1,11 +1,42 @@
-var express = require('express')
-var app = express()               
+const express = require("express");
+const app = express();
+const faker = require("faker");
 
-var port = 3003
+const port = 3003;
 
-app.get('/', function(req, res) {
-  res.json({ mensaje: '¡Hola Mundo!' })   
-})
+const patients = [];
 
-app.listen(port)
-console.log('API START ' + port)
+for (let i = 0; i < 10; i++) {
+  const patient = {
+    _id: faker.datatype.uuid(),
+    name: faker.name.findName(),
+    identifier: faker.random.alphaNumeric(10),
+    birthDate: faker.date.past(50).toISOString().substr(0, 10),
+    deceasedBirth: faker.random.boolean()
+      ? faker.date.past(10).toISOString().substr(0, 10)
+      : null,
+    birthCity: faker.address.city(),
+    isDeceased: faker.random.boolean(),
+    address: faker.address.streetAddress(),
+    email: faker.internet.email(),
+    married: faker.random.boolean(),
+    createdAt: faker.date.past(),
+    updatedAt: faker.date.recent(),
+  };
+  patients.push(patient);
+}
+
+app.get("/patients", function (req, res) {
+  const identifier = req.query.identifier;
+  console.log('identifier', identifier);
+  let dataResp = [];
+    if (identifier == undefined || identifier == null || identifier == '') {
+        dataResp = patients;
+    } else {
+        dataResp = patients.filter((patient) => patient.identifier === identifier);
+    }
+  res.json({ data: dataResp });
+});
+
+app.listen(port);
+console.log(`🚀 System Technologies API start on port => ${port} ✅`);
