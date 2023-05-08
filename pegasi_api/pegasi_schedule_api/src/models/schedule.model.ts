@@ -4,8 +4,8 @@ import { ValidateNested, IsDate, IsNumber, IsDateString } from 'class-validator'
 export interface Schedule {
     paciente: Patient,
     fechaRegistro: Date,
-    fechaInicio: number,
-    fechaFinal: number
+    fechaInicio?: number,
+    fechaFinal?: number
 }
 
 // Model for creating item in database.

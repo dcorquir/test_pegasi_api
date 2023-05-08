@@ -23,3 +23,8 @@ export class BadRequestError extends ApiError {
     super(StatusCodes.BAD_REQUEST, message, errors);
   }
 }
+export class NotFoundDataError extends ApiError {
+  constructor(message: string, errors: string[]) {
+    super(StatusCodes.NOT_FOUND, message, errors);
+  }
+}
