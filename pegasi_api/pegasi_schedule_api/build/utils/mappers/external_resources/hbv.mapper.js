@@ -1,9 +1,10 @@
-import { Schedule } from './../../../models/schedule.model';
-import { HbvPatient } from './../../../models/dtos/external/hbv.response.dto';
-
-export class HbvMapper {
-
-    static mapperPatientData(patient: HbvPatient): Schedule {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HbvMapper = void 0;
+var HbvMapper = /** @class */ (function () {
+    function HbvMapper() {
+    }
+    HbvMapper.mapperPatientData = function (patient) {
         return {
             paciente: {
                 nombre: patient.nombre_completo,
@@ -16,6 +17,7 @@ export class HbvMapper {
                 email: patient.correoActual
             }
         };
-    }
-
-}
+    };
+    return HbvMapper;
+}());
+exports.HbvMapper = HbvMapper;

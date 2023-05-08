@@ -17,6 +17,7 @@ export class ExternalResourceController {
         }
 
         if (externalData) {
+            externalData.fechaRegistro = patient.fechaRegistro;
             externalData.fechaInicio = patient.fechaInicio;
             externalData.fechaFinal = patient.fechaFinal;
         }

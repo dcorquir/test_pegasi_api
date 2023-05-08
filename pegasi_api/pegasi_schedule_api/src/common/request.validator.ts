@@ -13,7 +13,7 @@ export default class RequestValidator {
               rawErrors = rawErrors.concat(...rawErrors, Object.values(errorItem.constraints ?? []));
             }
             const validationErrorText = 'Request validation failed!';
-            console.log('error found!', rawErrors);
+            console.error('error found!', rawErrors);
             next(new BadRequestError(validationErrorText, rawErrors));
           }
         });
