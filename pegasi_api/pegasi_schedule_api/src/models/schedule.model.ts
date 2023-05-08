@@ -1,3 +1,5 @@
+import { model } from 'mongoose';
+import {  } from './../repositories/schedule.repository';
 import { Patient, PatientCreateAPI } from './patient.model';
 import { ValidateNested, IsDate, IsNumber, IsDateString } from 'class-validator';
 

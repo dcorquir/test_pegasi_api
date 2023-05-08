@@ -2,6 +2,7 @@ import { Router, Request, Response, } from 'express';
 import RequestValidator from './../common/request.validator';
 import { ScheduleCreateAPI } from './../models/schedule.model';
 import { ExternalResourceController } from './../controllers/externalresource.controller';
+import { ScheduleService } from './../services/schedule.service';
 
 const routes = Router();
 
@@ -18,7 +19,7 @@ routes.post('/', RequestValidator.validate(ScheduleCreateAPI), async (req: Reque
         dataInsert = await ExternalResourceController.getExternalResourceController(externalResource, req.body);
     }
 
-    console.log('dataInsert', dataInsert);
+    await ScheduleService.createSchedule(dataInsert);
 
     res.status(200).send({
         message: "La agenda se ha creado correctamente",

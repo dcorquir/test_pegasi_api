@@ -11,7 +11,7 @@ export class HbvMapper {
                 fechaNacimiento: patient.nacimiento,
                 fechaFachecimiento: patient.fallecido,
                 cidudadNacimiento: patient.ciudad_nacido,
-                fallecido: patient.fallecido,
+                fallecido: patient.fallecido && patient.fallecido != '' ? true : false,
                 direccion: patient.direccion_actual,
                 email: patient.correoActual
             },

@@ -11,7 +11,7 @@ export class StMapper {
                 fechaNacimiento: patient.birthDate,
                 fechaFachecimiento: patient.deceasedBirth,
                 cidudadNacimiento: patient.birthCity,
-                fallecido: patient.isDeceased,
+                fallecido: patient.isDeceased && patient.isDeceased != '' ? true : false,
                 direccion: patient.address,
                 email: patient.email,
                 casado: patient.married
