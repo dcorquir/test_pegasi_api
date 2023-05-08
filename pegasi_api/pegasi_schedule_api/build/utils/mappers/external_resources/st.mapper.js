@@ -1,9 +1,10 @@
-import { Schedule } from './../../../models/schedule.model';
-import { StPatient } from './../../../models/dtos/external/st.response.dto';
-
-export class StMapper {
-
-    static mapperPatientData(patient: StPatient): Schedule {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StMapper = void 0;
+var StMapper = /** @class */ (function () {
+    function StMapper() {
+    }
+    StMapper.mapperPatientData = function (patient) {
         return {
             paciente: {
                 nombre: patient.name,
@@ -17,6 +18,7 @@ export class StMapper {
                 casado: patient.married
             }
         };
-    }
-
-}
+    };
+    return StMapper;
+}());
+exports.StMapper = StMapper;

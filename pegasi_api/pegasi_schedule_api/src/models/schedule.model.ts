@@ -5,7 +5,7 @@ import { ValidateNested, IsDate, IsNumber, IsDateString } from 'class-validator'
 
 export interface Schedule {
     paciente: Patient,
-    fechaRegistro: Date,
+    fechaRegistro?: Date,
     fechaInicio?: number,
     fechaFinal?: number
 }

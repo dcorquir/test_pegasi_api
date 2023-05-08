@@ -2,19 +2,32 @@ import { Router, Request, Response, } from 'express';
 import RequestValidator from './../common/request.validator';
 import { ScheduleCreateAPI } from './../models/schedule.model';
 import { ExternalResourceController } from './../controllers/externalresource.controller';
+import { ScheduleController } from './../controllers/schedule.controller';
 import { ScheduleService } from './../services/schedule.service';
+import { Schedule } from './../models/schedule.model';
 
 const routes = Router();
 
-routes.get('/', (req: Request, res: Response) => {
-    return res.json({ message: 'Hello World' });
+routes.get('/', async (req: Request, res: Response) => {
+
+    let dataResp: Schedule[] = [];
+
+    const {identifier, registerDate} = req.query;
+
+    console.log('registerDate', registerDate);
+    console.log('identifier', identifier);
+    
+    dataResp = await ScheduleController.findSchedulerByIdentifierRegisterDate(identifier as string, registerDate as string);
+
+    res.status(200).send({
+        message: "Datos encontrados",
+        data: dataResp
+    });
 });
 
 routes.post('/', RequestValidator.validate(ScheduleCreateAPI), async (req: Request, res: Response) => {
-    console.log(req.body);
     const externalResource = req.body.externalResource;
     let dataInsert = req.body;
-    console.log('externalResource', externalResource);
     if (externalResource && externalResource != '') {
         dataInsert = await ExternalResourceController.getExternalResourceController(externalResource, req.body);
     }
