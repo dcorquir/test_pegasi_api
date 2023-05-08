@@ -1,6 +1,6 @@
 import { Schedule } from './../models/schedule.model';
 import { StService } from './../services/st.service';
-
+import { HbvService } from './../services/hbv.service';
 export class ExternalResourceController {
 
     static async getExternalResourceController(externalResource: string, patient: Schedule) {
@@ -8,16 +8,17 @@ export class ExternalResourceController {
         switch(externalResource) {
             case "ST":
                 externalData = await StService.getExternalResourceById(patient.paciente.dni);
-                if (externalData) {
-                    externalData.fechaInicio = patient.fechaInicio;
-                    externalData.fechaFinal = patient.fechaFinal;
-                }
                 break;
             case "HBV":
-                
+                externalData = await HbvService.getExternalResourceById(patient.paciente.dni);
                 break;
             default:
                 break;
+        }
+
+        if (externalData) {
+            externalData.fechaInicio = patient.fechaInicio;
+            externalData.fechaFinal = patient.fechaFinal;
         }
 
         return externalData != null ? externalData : patient;
